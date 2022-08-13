@@ -3,7 +3,6 @@ import { Route, Routes } from "react-router-dom";
 import { Home, CreateRoom,  RoomJoin } from "./components";
 
 function App() {
-  const [count, setCount] = useState(0);
 
   return (
     <Routes>
