@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, FormEvent, useState } from "react";
 
 type Props = {};
 
@@ -8,11 +8,17 @@ const CreateRoom = (props: Props) => {
 
   const handleVotesToSkipChange = (event: ChangeEvent<HTMLInputElement>) => {
     setVotesToSkip(Number(event.target.value));
+    return;
   };
 
   const handleGuestCanPauseChange = (e: ChangeEvent<HTMLInputElement>) => {
     e.target.value ? setGuestCanPause(true) : setGuestCanPause(false);
+    return;
   };
+
+  const handleRoomCreate = (e: FormEvent<HTMLFormElement>)  => {
+    
+  }
 
   return (
     <div className="w-full flex flex-col items-center">
@@ -53,6 +59,7 @@ const CreateRoom = (props: Props) => {
           step={1}
           value={votesToSkip}
           className="border-b-2 text-center pb-1 font-bold font-mono text-lg outline-none text-gray-800"
+          onChange={(e) => handleVotesToSkipChange(e)}
         />
       </div>
       <div className="flex my-5 font-bold font-mono text-white space-x-5">
