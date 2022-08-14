@@ -7,10 +7,9 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="join"  element={<RoomJoin />}>
-        <Route  path="create" element={<CreateRoom />} />
-        <Route path="room/:roomCode" element={<Room />} />
-      </Route>
+      <Route path="join" element={<RoomJoin />} />
+      <Route path="create" element={<CreateRoom />} />
+      <Route path="room/:roomCode" element={<Room />} />
     </Routes>
   );
 }
