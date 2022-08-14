@@ -1,9 +1,11 @@
 import axios from "axios";
 import { ChangeEvent, FormEvent, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 type Props = {};
 
 const CreateRoom = (props: Props) => {
+  const navigate = useNavigate()
   const [votesToSkip, setVotesToSkip] = useState<number>(2);
   const [guestCanPause, setGuestCanPause] = useState<boolean>(true);
 
@@ -13,7 +15,7 @@ const CreateRoom = (props: Props) => {
   };
 
   const handleGuestCanPauseChange = (e: ChangeEvent<HTMLInputElement>) => {
-    e.target.value ? setGuestCanPause(true) : setGuestCanPause(false);
+    e.target.value == 'true' ? setGuestCanPause(true) : setGuestCanPause(false);
     return;
   };
 
@@ -25,8 +27,9 @@ const CreateRoom = (props: Props) => {
         votes_to_skip: votesToSkip,
         guest_can_pause: guestCanPause,
       })
-      .then((response) => {
-        console.log(response.data);
+      .then((res) => {
+        console.log(res.data);
+        navigate(`/room/${res.data.code}/${res.data.host}`);
       })
       .catch((error) => {
         console.log(error);
