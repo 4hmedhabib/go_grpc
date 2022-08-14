@@ -17,14 +17,20 @@ const CreateRoom = (props: Props) => {
     return;
   };
 
-  const handleRoomCreate = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    const request = axios.post('/api/create-room/', {
-      votes_to_skip: votesToSkip,
-      guest_can_pause: guestCanPause
-    }).then(response => {
-      console.log(response.data)
-    }).catch(error => { console.log(error) });
+  const handleRoomCreate = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    
+    await axios
+      .post("/api/create-room/", {
+        votes_to_skip: votesToSkip,
+        guest_can_pause: guestCanPause,
+      })
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
@@ -43,6 +49,7 @@ const CreateRoom = (props: Props) => {
               value="true"
               className="checked:accent-blue-500"
               onChange={(e) => handleGuestCanPauseChange(e)}
+              checked={guestCanPause}
             />
             <label htmlFor="play/pause">Play/Pause</label>
           </div>
@@ -54,6 +61,7 @@ const CreateRoom = (props: Props) => {
               id="no-control"
               className="checked:accent-red-500"
               onChange={(e) => handleGuestCanPauseChange(e)}
+              checked={!guestCanPause}
             />
             <label htmlFor="no-control">No Control</label>
           </div>
